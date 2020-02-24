@@ -38,12 +38,47 @@ def post(id):
         return delete_post_by_id(id)
 
 @app.route('/api/v1/resources/posts', methods=['GET', 'POST'])
-def books():
+def posts():
     if request.method == 'GET':
-        pass
-        # return filter_books(request.args)
+        return filter_posts(request.args)
     elif request.method == 'POST':
         return create_post(request.data)
+
+def filter_posts(query_parameters):
+    id = query_parameters.get('id')
+    title = query_parameters.get('title')
+    comm = query_parameters.get('community')
+    url = query_parameters.get('url')
+    username = query_parameters.get('username')
+    created_date = query_parameters.get('created_date')
+
+    query = "SELECT * FROM posts WHERE"
+    to_filter = []
+
+    if id:
+        query += ' id=? AND'
+        to_filter.append(id)
+    if title:
+        query += ' title=? AND'
+        to_filter.append(title)
+    if comm:
+        query += ' comm=? AND'
+        to_filter.append(comm)
+    if url:
+        query += ' url=? AND'
+        to_filter.append(url)
+    if username:
+        query += ' username=? AND'
+        to_filter.append(username)
+    if created_date:
+        query += ' created_date=? AND'
+        to_filter.append(created_date)
+    if not (id or title or comm or url or username or created_date):
+        return page_not_found(404)
+
+    query = query[:-4] + ';'
+    results = queries._engine.execute(query, to_filter).fetchall()
+    return list(map(dict, results))
 
 
 def create_post(post):
