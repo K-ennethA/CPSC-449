@@ -4,6 +4,7 @@ from flask_api import status, exceptions
 import datetime
 import pugsql
 import os
+import datetime
 
 
 app = flask_api.FlaskAPI(__name__)
@@ -24,6 +25,16 @@ def init_db():
 @app.route('/', methods=['GET'])
 def index():
     return 'Welcome to Pizza Hut'
+
+@app.route('/api/v1/resources/posts/<string:comm>/<int:num_of_posts>',methods=['GET'])
+def get_recent_posts_comm(comm,num_of_posts):
+    recent = queries.posts_by_time_comm(comm=comm,num_of_posts=num_of_posts)
+    return list(recent)
+
+@app.route('/api/v1/resources/posts/recent/<int:num_of_posts>',methods=['GET'])
+def get_recent_posts(num_of_posts):
+    recent = queries.posts_by_time(num_of_posts=num_of_posts)
+    return list(recent)
 
 
 @app.route('/api/v1/resources/posts/all', methods=['GET'])

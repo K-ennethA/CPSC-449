@@ -11,6 +11,5 @@ CREATE TABLE posts (
   username VARCHAR NOT NULL,
   created_date VARCHAR NOT NULL
 );
-INSERT INTO posts(title,des,comm,url,username,created_date)
-VALUES('WOW','so amazing','LOL','https://','Ken','10.20.20');
+
 COMMIT;
