@@ -99,6 +99,8 @@ def create_post(post):
     if not all([field in post for field in required_fields]):
         raise exceptions.ParseError()
     try:
+        if not('url' in post):
+            post['url'] = ""
         day = datetime.datetime.now()
         post['created_date'] = day.strftime("%Y-%m-%d %H:%M:%S")
         post['id'] = queries.create_post(**post)
