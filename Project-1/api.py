@@ -1,6 +1,7 @@
 import flask_api
 from flask import request, jsonify
 from flask_api import status, exceptions
+import datetime
 import pugsql
 import os
 
@@ -82,11 +83,13 @@ def filter_posts(query_parameters):
 
 
 def create_post(post):
-    required_fields = ['title', 'des', 'comm', 'username','created_date']
+    required_fields = ['title', 'des', 'comm', 'username']
 
     if not all([field in post for field in required_fields]):
         raise exceptions.ParseError()
     try:
+        day = datetime.datetime.now()
+        post['created_date'] = day.strftime("%Y-%m-%d %H:%M:%S")
         post['id'] = queries.create_post(**post)
     except Exception as e:
         return { 'error': str(e) }, status.HTTP_409_CONFLICT
