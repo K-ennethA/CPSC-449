@@ -1,2 +1,2 @@
 -- :name all_posts :many
-SELECT * FROM posts
+SELECT id,title,comm,username,created_date FROM posts
