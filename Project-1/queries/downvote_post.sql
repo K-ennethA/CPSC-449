@@ -1,0 +1,2 @@
+-- :name downvote_post :affected
+UPDATE votes SET downvotes = downvotes + 1 WHERE post=:post;

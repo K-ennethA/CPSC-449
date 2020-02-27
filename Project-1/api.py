@@ -104,6 +104,8 @@ def create_post(post):
         day = datetime.datetime.now()
         post['created_date'] = day.strftime("%Y-%m-%d %H:%M:%S")
         post['id'] = queries.create_post(**post)
+        votes = {'upvotes':0, 'downvotes':0, 'total':0, 'post':post['id'] }
+        votes['id'] = queries.create_vote(**votes)
     except Exception as e:
         return { 'error': str(e) }, status.HTTP_409_CONFLICT
 
@@ -125,6 +127,35 @@ def delete_post_by_id(id):
         return { 'message': f'Deleted post with id {id}' }, status.HTTP_200_OK
     except Exception as e:
         return { 'error': str(e) }, status.HTTP_404_NOT_FOUND
+
+@app.route('/api/v1/resources/votes/all', methods=['GET'])
+def votes():
+    all_votes = queries.all_votes()
+    return list(all_votes)
+
+@app.route('/api/v1/resources/votes/upvote/<int:id>', methods=['GET'])
+def upvote(id):
+    post = queries.post_by_id(id=id)
+    if post:
+        queries.upvote_post(post=id)
+        return { 'message': f'upvoted post with id {id}'}, status.HTTP_200_OK
+    return { "error" : f"Post with id {id} not found" }, status.HTTP_404_NOT_FOUND
+
+@app.route('/api/v1/resources/votes/downvote/<int:id>', methods=['GET'])
+def downvote(id):
+    post = queries.post_by_id(id=id)
+    if post:
+        queries.downvote_post(post=id)
+        return {'message': f'downvoted post with id {id}'}, status.HTTP_200_OK
+    return {"error" : f"Post with id {id} not found"}, status.HTTP_404_NOT_FOUND
+
+@app.route('/api/v1/resources/votes/<int:id>', methods=['GET'])
+def get_votes_by_id(id):
+    post = queries.post_by_id(id=id)
+    if post:
+        post = queries.votes_by_post_id(post=id)
+        return post, status.HTTP_200_OK
+    return {'message': f'post with id {id} not found'}, status.HTTP_404_NOT_FOUND
 
 if __name__ == "__main__":
     app.run()
