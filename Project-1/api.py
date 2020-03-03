@@ -157,5 +157,25 @@ def get_votes_by_id(id):
         return post, status.HTTP_200_OK
     return {'message': f'post with id {id} not found'}, status.HTTP_404_NOT_FOUND
 
+@app.route('/api/v1/resources/votes/<string:comm>/<int:num_of_posts>',methods=['GET'])
+def get_votes_by_comm(comm,num_of_posts):
+    posts = queries.votes_by_comm(comm=comm,num_of_posts=num_of_posts)
+    return list(posts)
+
+@app.route('/api/v1/resources/votes/list', methods=['GET'])
+def list_posts():
+    list = [1,2,3]
+    placeholder= '?'
+    print('hello')
+    placeholders = ', '.join(placeholder for unused in list)
+    print('hello2')
+    query= 'SELECT posts.id,posts.title,posts.comm,posts.username,posts.created_date,votes.total FROM posts INNER JOIN votes ON posts.ivd=votes.post WHERE posts.id IN (%s)' % placeholders
+    print('hello3')
+    result = queries._engine.execute(query, list).fetchall
+    print('hello4')
+    print(f'{result} pizza hut')
+    print('hello5')
+    return list(map(dict, result))
+
 if __name__ == "__main__":
     app.run()
