@@ -1,6 +1,0 @@
-posts: FLASK_APP=posts.py flask run -p localhost 5000
-votes: FASK_APP=votes.py flask run -p localhost 5001
-
-
-
-

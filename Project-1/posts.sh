@@ -46,3 +46,7 @@ curl --verbose \
         "url": "gotmilk.com"
      }' \
     http://localhost:5000/api/v1/resources/posts
+
+curl --verbose \
+     --request GET \
+    http://localhost:5000/api/v1/resources/posts/$1
