@@ -1,0 +1,6 @@
+posts: FLASK_APP=posts.py flask run -port 5000
+votes: FASK_APP=votes.py flask run -port 5001
+
+
+
+
