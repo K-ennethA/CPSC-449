@@ -14,6 +14,10 @@ app.config.from_envvar('APP_CONFIG')
 queries = pugsql.module('queries/')
 queries.connect(app.config['DATABASE_URL'])
 
+@app.route('/', methods=['GET'])
+def index():
+    return list_posts([8,9])
+
 @app.route('/api/v1/resources/votes/all', methods=['GET'])
 def votes():
     all_votes = queries.all_votes()
@@ -43,15 +47,23 @@ def get_votes_by_id(id):
         return post, status.HTTP_200_OK
     return {'message': f'post with id {id} not found'}, status.HTTP_404_NOT_FOUND
 
+#n top scoring by community (accidentally read the promt wrong first time)
 @app.route('/api/v1/resources/votes/<string:comm>/<int:num_of_posts>',methods=['GET'])
 def get_votes_by_comm(comm,num_of_posts):
     posts = queries.votes_by_comm(comm=comm,num_of_posts=num_of_posts)
     return list(posts)
 
-@app.route('/api/v1/resources/votes/list', methods=['GET'])
-def list_posts(tosort):
-    #list of id's we want to go through and sort
-    to_filter = list(tosort)
+#n top scoring posts despite community 
+@app.route('/api/v1/resources/votes/top/<int:num_of_posts>',methods=['GET'])
+def n_top_scoring_posts(num_of_posts):
+    posts = queries.n_top_scoring(num_of_posts=num_of_posts)
+    return list(posts)
+
+@app.route('/api/v1/resources/votes/list', methods=['POST'])
+def list_posts():
+    to_filter = list(request.form.get('list'))
+    to_filter = parse(to_filter)
+
     query = "SELECT posts.id,posts.title,posts.comm,posts.username,posts.created_date,votes.total FROM posts INNER JOIN votes ON posts.id=votes.post WHERE posts.id IN ("
     #add as many ? we need to filter
     for i in to_filter:
@@ -61,6 +73,19 @@ def list_posts(tosort):
     results = queries._engine.execute(query, to_filter).fetchall()
 
     return list(map(dict, results))
+
+def parse(arr):
+    #arr gets passed in format [ '[', '1', '4', ',', '6', ']' ]
+    temp = ""
+    for i in arr:
+        if i.isdigit():
+             temp = temp + i
+        elif i == ",":
+            temp = temp + ", "
+    #split string into a list of string digits
+    parsed = temp.split(", ")
+    #return the example as [ '14', '6']
+    return parsed
 
 if __name__ == "__main__":
     app.run()
