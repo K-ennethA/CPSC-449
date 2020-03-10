@@ -1,6 +1,6 @@
 localhost/posts{
 	log stdout
-	proxy / 127.0.0.1:8000 127.0.0.1:8001 127.0.0.1:8002
+	proxy / 127.0.0.1:5000 127.0.0.1:5001 127.0.0.1:5002
 		 
 
 
@@ -8,8 +8,6 @@ localhost/posts{
 
 localhost/votes{
 	log stdout
-	proxy /127.0.0.1:8100 127.0.0.1:8101 127.0.0.1:8102 {
-		transparent
-	}
+	proxy /127.0.0.1:5100 127.0.0.1:5101 127.0.0.1:5102 
 
 }
