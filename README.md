@@ -1,6 +1,6 @@
 # CPSC-449
 CPSC 449 Back End Engineering Project 1
-## Janeen Yamak, Kenneth Aguilar, Lorena Macias  
+## Janeen Yamak (DevOps), Kenneth Aguilar(Dev 1), Lorena Macias (Dev 2)
 
 ### Foreman 
 foreman start -m posts=3,votes=3,caddy=1
