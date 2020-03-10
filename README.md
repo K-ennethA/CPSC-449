@@ -92,3 +92,51 @@ Foreman start
 - `200 OK` if successful 
 - `404 NOT FOUND` if no posts are found
 <p>&nbsp;</p>
+
+## Upvote a Post
+**Definition**
+
+`POST /api/v1/resources/votes/upvote/<int:id>`
+
+**Response**
+- `200 OK` on success
+- `404 NOT FOUND` if post does not exist
+<p>&nbsp;</p>
+
+## Downvote a Post
+**Definition**
+
+`POST /api/v1/resources/votes/downvote/<int:id>`
+
+**Response**
+- `200 OK` on success
+- `404 NOT FOUND` if post does not exist
+<p>&nbsp;</p>
+
+## Report Number of Upvotes and Downvotes for a Post
+**Definition**
+
+`GET /api/v1/resources/votes/<int:id>`
+
+**Response**
+- `200 OK` on success
+- `404 NOT FOUND` if post does not exist
+<p>&nbsp;</p>
+
+## List the n Top-Scoring Posts to Any Community
+**Definition**
+
+`GET /api/v1/resources/votes/top/<int:num_of_posts>`
+
+**Response**
+- `200 OK` on success
+<p>&nbsp;</p>
+
+## Given a List of Post Identifiers, Return the List Sorted by Score
+**Definition**
+
+`POST /api/v1/resources/votes/list`
+
+**Response**
+- `200 OK` on success
+<p>&nbsp;</p>
