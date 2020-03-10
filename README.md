@@ -3,7 +3,7 @@ CPSC 449 Back End Engineering Project 1
 ## Janeen Yamak, Kenneth Aguilar, Lorena Macias  
 
 ### Foreman 
-Foreman start 
+foreman start -m posts=3,votes=3,caddy=1
 
 ### Posts have the form 
 ```json
