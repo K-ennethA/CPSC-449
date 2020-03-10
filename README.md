@@ -5,6 +5,16 @@ CPSC 449 Back End Engineering Project 1
 ### Foreman 
 foreman start -m posts=3,votes=3,caddy=1
 
+### Testing 
+
+**To Test Posts Microservice Run the File**
+
+`postTest.sh`
+
+**To Test Votes Microservice Run the File**
+
+`voteTest.sh`
+
 ### Posts have the form 
 ```json
 [
