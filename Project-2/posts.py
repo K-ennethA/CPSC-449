@@ -5,7 +5,7 @@ import datetime
 import pugsql
 import os
 import datetime
-
+import dynamoPosts
 
 app = flask_api.FlaskAPI(__name__)
 app.config.from_envvar('APP_CONFIG')
@@ -17,31 +17,37 @@ queries.connect(app.config['DATABASE_URL'])
 @app.route('/api/v1/resources/posts/<string:comm>/<int:num_of_posts>',methods=['GET'])
 def get_recent_posts_comm(comm,num_of_posts):
     recent = queries.posts_by_time_comm(comm=comm,num_of_posts=num_of_posts)
-    return list(recent)
+    return list(dynamoPosts.nMostRecentPostsSubreddit(comm,num_of_posts))
+    # return list(recent)
 
 @app.route('/api/v1/resources/posts/recent/<int:num_of_posts>',methods=['GET'])
 def get_recent_posts(num_of_posts):
     recent = queries.posts_by_time(num_of_posts=num_of_posts)
-    return list(recent)
+    return dynamoPosts.nMostRecentPosts(num_of_posts)
+    # return list(recent)
 
 
 @app.route('/api/v1/resources/posts/all', methods=['GET'])
 def get_all_posts():
     all_posts = queries.all_posts()
-    return list(all_posts)
+    return list(dynamoPosts.getAllPosts())
+    # return list(all_posts)
 
 @app.route('/api/v1/resources/posts/<int:id>', methods=['GET', 'DELETE'])
 def post(id):
     if request.method == 'GET':
-        return get_post_by_id(id)
+        return dynamoPosts.getPost(id)
+        # return get_post_by_id(id)
     elif request.method == 'DELETE':
-        return delete_post_by_id(id)
+        return dynamoPosts.deletePost(id)
+        # return delete_post_by_id(id)
 
 @app.route('/api/v1/resources/posts', methods=['GET', 'POST'])
 def posts():
     if request.method == 'GET':
         return filter_posts(request.args)
     elif request.method == 'POST':
+        # dynamoPosts.createPost(request.data)
         return create_post(request.data)
 
 def filter_posts(query_parameters):
@@ -88,12 +94,13 @@ def create_post(post):
         raise exceptions.ParseError()
     try:
         if not('url' in post):
-            post['url'] = ""
+            post['url'] = "None"
         day = datetime.datetime.now()
         post['created_date'] = day.strftime("%Y-%m-%d %H:%M:%S")
         post['id'] = queries.create_post(**post)
         votes = {'upvotes':0, 'downvotes':0, 'total':0, 'post':post['id'] }
         votes['id'] = queries.create_vote(**votes)
+        dynamoPosts.createPost(post['id'],post['title'],post['comm'],post['username'],post['created_date'],post['url'])
     except Exception as e:
         return { 'error': str(e) }, status.HTTP_409_CONFLICT
 
