@@ -1,0 +1,8 @@
+posts: gunicorn3 -b localhost:$PORT  posts:app
+votes: gunicorn3 -b localhost:$PORT  votes:app
+
+caddy: ulimit -n 8192 && caddy
+
+
+
+
