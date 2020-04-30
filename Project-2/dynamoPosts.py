@@ -112,7 +112,8 @@ def createPost(PostID,title,subreddit,text,username,date,url=None):
         }
     )
     print("PutItem succeeded:")
-    print(json.dumps(response, indent=4, cls=DecimalEncoder))
+    # print(json.dumps(response, indent=4, cls=DecimalEncoder))
+    return json.dumps(response['Items'], indent=4, cls=DecimalEncoder)
 
 def getAllPosts():
     pe = "title, subreddit"
@@ -136,7 +137,7 @@ def getAllPosts():
 
         # for i in response['Items']:
         #     print(json.dumps(i, cls=DecimalEncoder))
-        return json.dumps(response,indent=4, cls=DecimalEncoder))
+        return json.dumps(response['Items'],indent=4, cls=DecimalEncoder)
 
 
 def getPost(PostID):
@@ -149,7 +150,7 @@ def getPost(PostID):
 
     # for i in response['Items']:
     #     print(json.dumps(i, cls=DecimalEncoder))
-    return json.dumps(response,indent=4, cls=DecimalEncoder))
+    return json.dumps(response['Items'],indent=4, cls=DecimalEncoder)
 
 def deletePost(PostID):
     try:
@@ -165,7 +166,7 @@ def deletePost(PostID):
             raise
     else:
         print("DeleteItem succeeded:")
-        return json.dumps(response,indent=4, cls=DecimalEncoder))
+        return json.dumps(response['Items'],indent=4, cls=DecimalEncoder)
 
 def nMostRecentPosts(n):
     response = table.query(
@@ -179,7 +180,7 @@ def nMostRecentPosts(n):
 
     # for i in response['Items']:
     #     print(json.dumps(i, cls=DecimalEncoder))
-    return json.dumps(response,indent=4, cls=DecimalEncoder))
+    return json.dumps(response['Items'],indent=4, cls=DecimalEncoder)
 
 def nMostRecentPostsSubreddit(subreddit,n):
     response = table.query(
@@ -194,4 +195,4 @@ def nMostRecentPostsSubreddit(subreddit,n):
 
     # for i in response['Items']:
     #     print(json.dumps(i, cls=DecimalEncoder))
-    return json.dumps(response,indent=4, cls=DecimalEncoder))
+    return json.dumps(response['Items'],indent=4, cls=DecimalEncoder)
