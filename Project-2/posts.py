@@ -17,7 +17,7 @@ queries.connect(app.config['DATABASE_URL'])
 @app.route('/api/v1/resources/posts/<string:comm>/<int:num_of_posts>',methods=['GET'])
 def get_recent_posts_comm(comm,num_of_posts):
     recent = queries.posts_by_time_comm(comm=comm,num_of_posts=num_of_posts)
-    return list(dynamoPosts.nMostRecentPostsSubreddit(comm,num_of_posts))
+    return dynamoPosts.nMostRecentPostsSubreddit(comm,num_of_posts)
     # return list(recent)
 
 @app.route('/api/v1/resources/posts/recent/<int:num_of_posts>',methods=['GET'])
@@ -30,7 +30,7 @@ def get_recent_posts(num_of_posts):
 @app.route('/api/v1/resources/posts/all', methods=['GET'])
 def get_all_posts():
     all_posts = queries.all_posts()
-    return list(dynamoPosts.getAllPosts())
+    return dynamoPosts.getAllPosts()
     # return list(all_posts)
 
 @app.route('/api/v1/resources/posts/<int:id>', methods=['GET', 'DELETE'])

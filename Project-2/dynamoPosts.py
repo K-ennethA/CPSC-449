@@ -116,28 +116,55 @@ def createPost(PostID,title,subreddit,text,username,date,url=None):
     return json.dumps(response['Items'], indent=4, cls=DecimalEncoder)
 
 def getAllPosts():
-    pe = "title, subreddit"
+    # pe = "title, subreddit"
+    #
+    # response = table.scan(
+    #     # FilterExpression=fe,
+    #     ProjectionExpression=pe,
+    #     # ExpressionAttributeNames=ean
+    #     )
+    #
+    # for i in response['Items']:
+    #     print(json.dumps(i, cls=DecimalEncoder))
+    #
+    # while 'LastEvaluatedKey' in response:
+    #     response = table.scan(
+    #         ProjectionExpression=pe,
+    #         # FilterExpression=fe,
+    #         # ExpressionAttributeNames= ean,
+    #         ExclusiveStartKey=response['LastEvaluatedKey']
+    #         )
+    #
+    #     # for i in response['Items']:
+    #     #     print(json.dumps(i, cls=DecimalEncoder))
+    #     return json.dumps(response['Items'],indent=4, cls=DecimalEncoder)
+    pe = "#dt, title, subreddit"
+    # Expression Attribute Names for Projection Expression only.
+    ean = { "#dt": "date", }
+    esk = None
+
 
     response = table.scan(
-        # FilterExpression=fe,
         ProjectionExpression=pe,
-        # ExpressionAttributeNames=ean
+        ExpressionAttributeNames=ean
         )
-
-    for i in response['Items']:
-        print(json.dumps(i, cls=DecimalEncoder))
+    #
+    # for i in response['Items']:
+    #     print(json.dumps(i, cls=DecimalEncoder))
+    # return json.dumps(response['Items'], cls=DecimalEncoder)
 
     while 'LastEvaluatedKey' in response:
         response = table.scan(
             ProjectionExpression=pe,
             # FilterExpression=fe,
-            # ExpressionAttributeNames= ean,
+            ExpressionAttributeNames= ean,
             ExclusiveStartKey=response['LastEvaluatedKey']
             )
 
         # for i in response['Items']:
         #     print(json.dumps(i, cls=DecimalEncoder))
-        return json.dumps(response['Items'],indent=4, cls=DecimalEncoder)
+    return json.dumps(response['Items'], cls=DecimalEncoder)
+
 
 
 def getPost(PostID):
