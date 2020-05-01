@@ -113,34 +113,26 @@ def createPost(PostID,title,subreddit,text,username,date,url=None):
     )
     print("PutItem succeeded:")
     # print(json.dumps(response, indent=4, cls=DecimalEncoder))
-    return json.dumps(response['Items'], indent=4, cls=DecimalEncoder)
+    return json.dumps(response, indent=4, cls=DecimalEncoder)
+def getMostRecentID():
+    response = table.query(
+        IndexName="home-index",
+        ProjectionExpression="PostID",
+        KeyConditionExpression=Key('home').eq('home'),
+        ScanIndexForward=False,
+        Limit=1
+    )
 
-def getAllPosts():
-    # pe = "title, subreddit"
-    #
-    # response = table.scan(
-    #     # FilterExpression=fe,
-    #     ProjectionExpression=pe,
-    #     # ExpressionAttributeNames=ean
-    #     )
-    #
     # for i in response['Items']:
     #     print(json.dumps(i, cls=DecimalEncoder))
-    #
-    # while 'LastEvaluatedKey' in response:
-    #     response = table.scan(
-    #         ProjectionExpression=pe,
-    #         # FilterExpression=fe,
-    #         # ExpressionAttributeNames= ean,
-    #         ExclusiveStartKey=response['LastEvaluatedKey']
-    #         )
-    #
-    #     # for i in response['Items']:
-    #     #     print(json.dumps(i, cls=DecimalEncoder))
-    #     return json.dumps(response['Items'],indent=4, cls=DecimalEncoder)
-    pe = "#dt, title, subreddit"
+    # return json.dumps(response['Items'][],indent=4, cls=DecimalEncoder)
+    return int(json.dumps(response['Items'][0]['PostID'],cls=DecimalEncoder))
+
+def getAllPosts():
+
+    pe = "#dt, title, subreddit,username"
     # Expression Attribute Names for Projection Expression only.
-    ean = { "#dt": "date", }
+    ean = { "#dt": "date" }
     esk = None
 
 
@@ -169,7 +161,7 @@ def getAllPosts():
 
 def getPost(PostID):
     response = table.query(
-        ProjectionExpression="PostID,title,subreddit,#dt,username",
+        ProjectionExpression="title,subreddit,#dt,username",
         ExpressionAttributeNames={ "#dt": "date" }, # Expression Attribute Names for Projection Expression only.
         KeyConditionExpression=Key('PostID').eq(PostID),
         ScanIndexForward=False,
@@ -198,7 +190,7 @@ def deletePost(PostID):
 def nMostRecentPosts(n):
     response = table.query(
         IndexName="home-index",
-        ProjectionExpression="PostID,title,subreddit,#dt,username",
+        ProjectionExpression="title,subreddit,#dt,username",
         ExpressionAttributeNames={ "#dt": "date" }, # Expression Attribute Names for Projection Expression only.
         KeyConditionExpression=Key('home').eq('home'),
         ScanIndexForward=False,
@@ -212,7 +204,7 @@ def nMostRecentPosts(n):
 def nMostRecentPostsSubreddit(subreddit,n):
     response = table.query(
         IndexName="subreddit-index",
-        ProjectionExpression="PostID,title,subreddit,#dt,username",
+        ProjectionExpression="title,subreddit,#dt,username",
         ExpressionAttributeNames={ "#dt": "date" }, # Expression Attribute Names for Projection Expression only.
         KeyConditionExpression=Key('subreddit').eq(subreddit),
         ScanIndexForward=False,
