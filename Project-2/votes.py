@@ -22,8 +22,11 @@ def index():
 
 @app.route('/api/v1/resources/votes/all', methods=['GET'])
 def votes():
-    all_votes = queries.all_votes()
-    return list(all_votes)
+    # all_votes = queries.all_votes()
+    listOfIds = r.zrevrange('votes', 0, -1)
+    sortedPosts = getAllInfo(listOfIds)
+    return list(sortedPosts)
+    # return list(all_votes)
 
 @app.route('/api/v1/resources/votes/upvote/<int:id>', methods=['GET'])
 def upvote(id):
@@ -92,7 +95,8 @@ def n_top_scoring_posts(num_of_posts):
 
 @app.route('/api/v1/resources/votes/list', methods=['POST', 'GET'])
 def list_posts():
-    ids = [3,4,5]
+    to_filter = list(request.form.get('list'))
+    ids = parse(to_filter)
     for i in range(len(ids)):
         totalVotes = int(r.hget(ids[i], 'total'))
         r.zadd("temp", {ids[i]:totalVotes})
