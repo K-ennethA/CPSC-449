@@ -166,7 +166,7 @@ def getAllPosts():
 
 def getPost(PostID):
     response = table.query(
-        ProjectionExpression="title,subreddit,#dt,username",
+        ProjectionExpression="PostID,title,subreddit,#dt,username",
         ExpressionAttributeNames={ "#dt": "date" }, # Expression Attribute Names for Projection Expression only.
         KeyConditionExpression=Key('PostID').eq(PostID),
         ScanIndexForward=False,
