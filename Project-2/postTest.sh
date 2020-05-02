@@ -5,117 +5,340 @@ curl --verbose \
      --request POST \
      --header 'Content-Type: application/json' \
      --data '{
-       "title": "The first reddit post",
-       "des": "reddit but for school",
-       "comm":"449",
-       "username":"lorena"
+       "title": "New Star Wars When???",
+       "des": "some description1",
+       "comm":"StarWars",
+       "username":"BigStarWarsFan"
      }' \
     http://localhost:5000/api/v1/resources/posts
-
-
+sleep 1
 curl --verbose \
-      --request POST \
-      --header 'Content-Type: application/json' \
-      --data '{
-        "title": "2nd Post",
-        "des": "sample description 2",
-        "comm":"basement",
-        "username":"kenneth",
-        "url": "reddit.com"
+     --request POST \
+     --header 'Content-Type: application/json' \
+     --data '{
+       "title": "If I am the father do I have to pay past child support?",
+       "des": "some description2",
+       "comm":"StarWars",
+       "username":"Darth Vader"
      }' \
     http://localhost:5000/api/v1/resources/posts
-
-curl --verbose \
-      --request POST \
-      --header 'Content-Type: application/json' \
-      --data '{
-        "title": "3rd Post",
-        "des": "sample desc 3",
-        "comm":"449",
-        "username":"janeen",
-        "url": "reddit.com"
-     }' \
-    http://localhost:5000/api/v1/resources/posts
-
-curl --verbose \
-      --request POST \
-      --header 'Content-Type: application/json' \
-      --data '{
-        "title": "4th Post",
-        "des": "sample desc 4",
-        "comm":"basement",
-        "username":"kenneth",
-        "url": "reddit.com"
-     }' \
-    http://localhost:5000/api/v1/resources/posts
+sleep 1
 
 curl --verbose \
      --request POST \
      --header 'Content-Type: application/json' \
      --data '{
-       "title": "5th Post",
-       "des": "lets try something new",
-       "comm":"CS-302",
-       "username":"lorena"
+       "title": "Reconnecting with father advice",
+       "des": "some description3",
+       "comm":"StarWars",
+       "username":"Luke Skywalker"
+     }' \
+    http://localhost:5000/api/v1/resources/posts
+sleep 1
+
+curl --verbose \
+     --request POST \
+     --header 'Content-Type: application/json' \
+     --data '{
+       "title": "Does anyone else think the sith lord and chancellor look the same",
+       "des": "some description4",
+       "comm":"StarWars",
+       "username":"Clone trooper 5s"
+     }' \
+    http://localhost:5000/api/v1/resources/posts
+sleep 1
+
+curl --verbose \
+     --request POST \
+     --header 'Content-Type: application/json' \
+     --data '{
+       "title": "Looking for work Post Death Star",
+       "des": "some description5",
+       "comm":"StarWars",
+       "username":"Storm Trooper"
+     }' \
+    http://localhost:5000/api/v1/resources/posts
+sleep 1
+
+curl --verbose \
+     --request POST \
+     --header 'Content-Type: application/json' \
+     --data '{
+       "title": "Hnn Hnn",
+       "des": "some description6",
+       "comm":"StarWars",
+       "username":"Sand People 5s"
+     }' \
+    http://localhost:5000/api/v1/resources/posts
+sleep 1
+
+curl --verbose \
+     --request POST \
+     --header 'Content-Type: application/json' \
+     --data '{
+       "title": "RAWRWARRGG",
+       "des": "some description7",
+       "comm":"StarWars",
+       "username":"Chewie"
+     }' \
+    http://localhost:5000/api/v1/resources/posts
+sleep 1
+
+curl --verbose \
+     --request POST \
+     --header 'Content-Type: application/json' \
+     --data '{
+       "title": "I know",
+       "des": "some description8",
+       "comm":"StarWars",
+       "username":"Han Solo",
+       "url" : "Starwarsfanpage.com"
+     }' \
+    http://localhost:5000/api/v1/resources/posts
+sleep 1
+
+curl --verbose \
+     --request POST \
+     --header 'Content-Type: application/json' \
+     --data '{
+       "title": "I love you",
+       "des": "some description9",
+       "comm":"StarWars",
+       "username":"Leia",
+       "url" : "Starwarsfanpage.com"
+     }' \
+    http://localhost:5000/api/v1/resources/posts
+sleep 1
+
+curl --verbose \
+     --request POST \
+     --header 'Content-Type: application/json' \
+     --data '{
+       "title": "Take a seat skywalker",
+       "des": "some description10",
+       "comm":"StarWars",
+       "username":"Mace Windu",
+       "url" : "Starwarsfanpage.com"
      }' \
     http://localhost:5000/api/v1/resources/posts
 
+sleep 1
 
 curl --verbose \
-      --request POST \
-      --header 'Content-Type: application/json' \
-      --data '{
-        "title": "6th Post",
-        "des": "hello world",
-        "comm":"CS-302",
-        "username":"janeen",
-        "url": "reddit.com"
+     --request POST \
+     --header 'Content-Type: application/json' \
+     --data '{
+       "title": "May the Force be with you",
+       "des": "some description11",
+       "comm":"StarWars",
+       "username":"Skyguy",
+       "url" : "Starwarsfanpage.com"
      }' \
     http://localhost:5000/api/v1/resources/posts
+sleep 1
 
 curl --verbose \
-      --request POST \
-      --header 'Content-Type: application/json' \
-      --data '{
-        "title": "7th Post",
-        "des": "testing last minute",
-        "comm":"CS-302",
-        "username":"kenneth"
+     --request POST \
+     --header 'Content-Type: application/json' \
+     --data '{
+       "title": "Do or do not there is no try",
+       "des": "some description12",
+       "comm":"StarWars",
+       "username":"YODA",
+       "url" : "Starwarsfanpage.com"
      }' \
     http://localhost:5000/api/v1/resources/posts
+sleep 1
 
 curl --verbose \
-      --request POST \
-      --header 'Content-Type: application/json' \
-      --data '{
-        "title": "take 8",
-        "des": "testing 8th post",
-        "comm":"449",
-        "username":"kenneth",
-        "url": "reddit.com"
+     --request POST \
+     --header 'Content-Type: application/json' \
+     --data '{
+       "title": "Star Trek is better",
+       "des": "some description13",
+       "comm":"StarWars",
+       "username":"disgruntled star trek fan",
+       "url" : "starwarstakesawayfromthetrek.com"
      }' \
     http://localhost:5000/api/v1/resources/posts
-
-#delete posts with id's 2 and 6
-curl --verbose \
-     --request DELETE \
-    http://localhost:5000/api/v1/resources/posts/2
+sleep 1
 
 curl --verbose \
-     --request DELETE \
-    http://localhost:5000/api/v1/resources/posts/6
+     --request POST \
+     --header 'Content-Type: application/json' \
+     --data '{
+       "title": "Does anyone else think disney ruined star wars",
+       "des": "some description14",
+       "comm":"StarWars",
+       "username":"disgruntled star wars fan",
+       "url" : "georgelucas.com"
+     }' \
+    http://localhost:5000/api/v1/resources/posts
+sleep 1
 
-#gety post with id 4
 curl --verbose \
-     --request GET \
-    http://localhost:5000/api/v1/resources/posts/4
+     --request POST \
+     --header 'Content-Type: application/json' \
+     --data '{
+       "title": "Ahsoka is an amazing character",
+       "des": "some description15",
+       "comm":"StarWars",
+       "username":"Rex",
+       "url" : "starwars.com"
+     }' \
+    http://localhost:5000/api/v1/resources/posts
+sleep 1
 
-# get 2 most recent posts from community 449
 curl --verbose \
-     --request GET \
-    http://localhost:5000/api/v1/resources/posts/449/2
+     --request POST \
+     --header 'Content-Type: application/json' \
+     --data '{
+       "title": "Anakin is the chosen one",
+       "des": "some description16",
+       "comm":"StarWars",
+       "username":"qui gon",
+       "url" : "starwars.com"
+     }' \
+    http://localhost:5000/api/v1/resources/posts
+sleep 1
 
-# get 3 recent posts from any community
 curl --verbose \
-     --request GET \
-    http://localhost:5000/api/v1/resources/posts/recent/3
+     --request POST \
+     --header 'Content-Type: application/json' \
+     --data '{
+       "title": "Qui Gon Really Gone",
+       "des": "some description17",
+       "comm":"StarWars",
+       "username":"Yoda",
+       "url" : "starwars.com"
+     }' \
+    http://localhost:5000/api/v1/resources/posts
+sleep 1
+
+curl --verbose \
+     --request POST \
+     --header 'Content-Type: application/json' \
+     --data '{
+       "title": "Obi Wan is the Only one for me",
+       "des": "some description18",
+       "comm":"StarWars",
+       "username":"obifans",
+       "url" : "starwars.com"
+     }' \
+    http://localhost:5000/api/v1/resources/posts
+sleep 1
+
+curl --verbose \
+     --request POST \
+     --header 'Content-Type: application/json' \
+     --data '{
+       "title": "HELLO THERE",
+       "des": "some description19",
+       "comm":"StarWars",
+       "username":"OBI Wan",
+       "url" : "starwars.com"
+     }' \
+    http://localhost:5000/api/v1/resources/posts
+sleep 1
+
+curl --verbose \
+     --request POST \
+     --header 'Content-Type: application/json' \
+     --data '{
+       "title": "KENOBI You are a bold one",
+       "des": "some description20",
+       "comm":"StarWars",
+       "username":"Grievous",
+       "url" : "starwars.com"
+     }' \
+    http://localhost:5000/api/v1/resources/posts
+sleep 1
+
+curl --verbose \
+     --request POST \
+     --header 'Content-Type: application/json' \
+     --data '{
+       "title": "I was expecting Kenobi why are you here?",
+       "des": "some description21",
+       "comm":"StarWars",
+       "username":"Darth Maul",
+       "url" : "starwars.com"
+     }' \
+    http://localhost:5000/api/v1/resources/posts
+sleep 1
+
+curl --verbose \
+     --request POST \
+     --header 'Content-Type: application/json' \
+     --data '{
+       "title": "My powers have doubled since the last time",
+       "des": "some description22",
+       "comm":"StarWars",
+       "username":"Anakin",
+       "url" : "starwars.com"
+     }' \
+    http://localhost:5000/api/v1/resources/posts
+sleep 1
+
+curl --verbose \
+     --request POST \
+     --header 'Content-Type: application/json' \
+     --data '{
+       "title": "Good twice the pride double the fall",
+       "des": "some description23",
+       "comm":"StarWars",
+       "username":"Dooku",
+       "url" : "starwars.com"
+     }' \
+    http://localhost:5000/api/v1/resources/posts
+sleep 1
+
+curl --verbose \
+     --request POST \
+     --header 'Content-Type: application/json' \
+     --data '{
+       "title": "Dead sub or what?",
+       "des": "some description24",
+       "comm":"StarWars",
+       "username":"Darth Maul",
+       "url" : "starwars.com"
+     }' \
+    http://localhost:5000/api/v1/resources/posts
+sleep 1
+
+curl --verbose \
+     --request POST \
+     --header 'Content-Type: application/json' \
+     --data '{
+       "title": "Arent you a little short for a stromtrooper",
+       "des": "some description25",
+       "comm":"StarWars",
+       "username":"Storm Trooper2727",
+       "url" : "starwars.com"
+     }' \
+    http://localhost:5000/api/v1/resources/posts
+sleep 1
+
+# #delete posts with id's 2 and 6
+# curl --verbose \
+#      --request DELETE \
+#     http://localhost:5000/api/v1/resources/posts/2
+#
+# curl --verbose \
+#      --request DELETE \
+#     http://localhost:5000/api/v1/resources/posts/6
+#
+# #gety post with id 4
+# curl --verbose \
+#      --request GET \
+#     http://localhost:5000/api/v1/resources/posts/4
+#
+# # get 2 most recent posts from community 449
+# curl --verbose \
+#      --request GET \
+#     http://localhost:5000/api/v1/resources/posts/449/2
+#
+# # get 3 recent posts from any community
+# curl --verbose \
+#      --request GET \
+#     http://localhost:5000/api/v1/resources/posts/recent/3

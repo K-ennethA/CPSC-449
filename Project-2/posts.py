@@ -108,26 +108,25 @@ def createAWS_post(post):
     return dynamoPosts.createPost(postID,post['title'],post['comm'],post['des'],post['username'],date,post['url']), status.HTTP_201_CREATED, {
         'Location': f'/api/v1/resources/posts/{postID}'
     }
-# def create_post(post):
-#     required_fields = ['title', 'des', 'comm', 'username']
-#
-#     if not all([field in post for field in required_fields]):
-#         raise exceptions.ParseError()
-#     try:
-#         if not('url' in post):
-#             post['url'] = "None"
-#         day = datetime.datetime.now()
-#         post['created_date'] = day.strftime("%Y-%m-%d %H:%M:%S")
-#         post['id'] = queries.create_post(**post)
-#         votes = {'upvotes':0, 'downvotes':0, 'total':0, 'post':post['id'] }
-#         votes['id'] = queries.create_vote(**votes)
-#         dynamoPosts.createPost(post['id'],post['title'],post['comm'],post['des'],post['username'],post['created_date'],post['url'])
-#     except Exception as e:
-#         return { 'error': str(e) }, status.HTTP_409_CONFLICT
-#
-#     return post, status.HTTP_201_CREATED, {
-#         'Location': f'/api/v1/resources/posts/{post["id"]}'
-#     }
+def create_post(post):
+    required_fields = ['title', 'des', 'comm', 'username']
+
+    if not all([field in post for field in required_fields]):
+        raise exceptions.ParseError()
+    try:
+        if not('url' in post):
+            post['url'] = "None"
+        day = datetime.datetime.now()
+        post['created_date'] = day.strftime("%Y-%m-%d %H:%M:%S")
+        post['id'] = queries.create_post(**post)
+        votes = {'upvotes':0, 'downvotes':0, 'total':0, 'post':post['id'] }
+        votes['id'] = queries.create_vote(**votes)
+    except Exception as e:
+        return { 'error': str(e) }, status.HTTP_409_CONFLICT
+
+    return post, status.HTTP_201_CREATED, {
+        'Location': f'/api/v1/resources/posts/{post["id"]}'
+    }
 
 def get_post_by_id(id):
     post = queries.post_by_id(id=id)

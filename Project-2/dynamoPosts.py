@@ -126,7 +126,12 @@ def getMostRecentID():
     # for i in response['Items']:
     #     print(json.dumps(i, cls=DecimalEncoder))
     # return json.dumps(response['Items'][],indent=4, cls=DecimalEncoder)
-    return int(json.dumps(response['Items'][0]['PostID'],cls=DecimalEncoder))
+    print(response)
+    if int(json.dumps(response['Count'],cls=DecimalEncoder)) == 0:
+        id = 0
+    else:
+        id = int(json.dumps(response['Items'][0]['PostID'],cls=DecimalEncoder))
+    return id
 
 def getAllPosts():
 
