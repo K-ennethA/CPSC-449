@@ -182,8 +182,9 @@ def getPost(PostID):
     for i in response['Items']:
         post = json.dumps(i, cls=DecimalEncoder)
         post = json.loads(post)
+        return post
     # print(json.dumps(response['Items'],indent=4, cls=DecimalEncoder))
-    return post
+    # return post
     # return json.dumps(response['Items'],indent=4, cls=DecimalEncoder)
 
     # for i in response['Items']:
