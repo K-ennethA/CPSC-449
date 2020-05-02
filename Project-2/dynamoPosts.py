@@ -2,6 +2,9 @@ import json
 import decimal
 import boto3
 from boto3.dynamodb.conditions import Key, Attr
+import redis
+
+r = redis.Redis(host='localhost', charset="utf-8", decode_responses=True)
 
 # Helper class to convert a DynamoDB item to JSON.
 class DecimalEncoder(json.JSONEncoder):
@@ -111,6 +114,8 @@ def createPost(PostID,title,subreddit,text,username,date,url=None):
             'url' : url
         }
     )
+    r.hmset(PostID, {'id':PostID, 'upvotes':0, 'downvotes':0,'total':0})
+    r.zadd('votes', {PostID:0})
     print("PutItem succeeded:")
     # print(json.dumps(response, indent=4, cls=DecimalEncoder))
     return json.dumps(response, indent=4, cls=DecimalEncoder)
@@ -172,9 +177,14 @@ def getPost(PostID):
         ScanIndexForward=False,
     )
 
-    # for i in response['Items']:
-    #     print(json.dumps(i, cls=DecimalEncoder))
-    return json.dumps(response['Items'],indent=4, cls=DecimalEncoder)
+    for i in response['Items']:
+        post = json.dumps(i, cls=DecimalEncoder)
+        post = json.loads(post)
+    print(f"the post is: {post}")
+    print(json.dumps(response['Items'],indent=4, cls=DecimalEncoder))
+    print("heh")
+    return post
+    # return json.dumps(response['Items'],indent=4, cls=DecimalEncoder)
 
 def deletePost(PostID):
     try:
