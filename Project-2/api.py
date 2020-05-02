@@ -5,7 +5,7 @@ import datetime
 import pugsql
 import os
 import datetime
-
+import dynamoPosts
 
 app = flask_api.FlaskAPI(__name__)
 app.config.from_envvar('APP_CONFIG')
@@ -13,9 +13,13 @@ app.config.from_envvar('APP_CONFIG')
 
 queries = pugsql.module('queries/')
 queries.connect(app.config['DATABASE_URL'])
-
+def init_aws():
+    dynamoPosts.createPostsTable()
+def delete_aws():
+    dynamoPosts.deleteTable()
 @app.cli.command('init')
 def init_db():
+    # dynamoPosts.createPostsTable()
     with app.app_context():
         db = queries._engine.raw_connection()
         with app.open_resource('posts.sql', mode='r') as f:
