@@ -318,27 +318,175 @@ curl --verbose \
      }' \
     http://localhost:5000/api/v1/resources/posts
 sleep 1
+curl --verbose \
+     --request POST \
+     --header 'Content-Type: application/json' \
+     --data '{
+       "title": "I made a table",
+       "des": "some description26",
+       "comm":"Woodworking",
+       "username":"Ron Swanson"
+     }' \
+    http://localhost:5000/api/v1/resources/posts
+sleep 1
 
-# #delete posts with id's 2 and 6
-# curl --verbose \
-#      --request DELETE \
-#     http://localhost:5000/api/v1/resources/posts/2
-#
-# curl --verbose \
-#      --request DELETE \
-#     http://localhost:5000/api/v1/resources/posts/6
-#
-# #gety post with id 4
-# curl --verbose \
-#      --request GET \
-#     http://localhost:5000/api/v1/resources/posts/4
-#
-# # get 2 most recent posts from community 449
-# curl --verbose \
-#      --request GET \
-#     http://localhost:5000/api/v1/resources/posts/449/2
-#
-# # get 3 recent posts from any community
-# curl --verbose \
-#      --request GET \
-#     http://localhost:5000/api/v1/resources/posts/recent/3
+curl --verbose \
+     --request POST \
+     --header 'Content-Type: application/json' \
+     --data '{
+       "title": "Cute Dog",
+       "des": "some description27",
+       "comm":"Aww",
+       "username":"Dog lovers"
+     }' \
+    http://localhost:5000/api/v1/resources/posts
+sleep 1
+
+curl --verbose \
+     --request POST \
+     --header 'Content-Type: application/json' \
+     --data '{
+       "title": "I made a chair",
+       "des": "some description28",
+       "comm":"Woodworking",
+       "username":"WoodGUY"
+     }' \
+    http://localhost:5000/api/v1/resources/posts
+
+sleep 1
+
+curl --verbose \
+     --request POST \
+     --header 'Content-Type: application/json' \
+     --data '{
+       "title": "Hey all you cats and kittens",
+       "des": "some description29",
+       "comm":"Netflix",
+       "username":"Carol Baskin"
+     }' \
+    http://localhost:5000/api/v1/resources/posts
+sleep 1
+
+curl --verbose \
+     --request POST \
+     --header 'Content-Type: application/json' \
+     --data '{
+       "title": "That ***** carole baskin killed her husband",
+       "des": "some description30",
+       "comm":"Netflix",
+       "username":"Exotic Joe"
+     }' \
+    http://localhost:5000/api/v1/resources/posts
+sleep 1
+
+curl --verbose \
+     --request POST \
+     --header 'Content-Type: application/json' \
+     --data '{
+       "title": "We need to focus on the tigers",
+       "des": "some description31",
+       "comm":"Netflix",
+       "username":"Animal lover"
+     }' \
+    http://localhost:5000/api/v1/resources/posts
+sleep 1
+
+curl --verbose \
+     --request POST \
+     --header 'Content-Type: application/json' \
+     --data '{
+       "title": "Here is my doggo",
+       "des": "some description32",
+       "comm":"Aww",
+       "username":"IONLYTAKEPICTURESOFMYDOG",
+       "url" : "doggpics.com"
+     }' \
+    http://localhost:5000/api/v1/resources/posts
+sleep 1
+
+curl --verbose \
+     --request POST \
+     --header 'Content-Type: application/json' \
+     --data '{
+       "title": "Weird animal you probably shouldnt own",
+       "des": "some description33",
+       "comm":"Aww",
+       "username":"Exotic Joe"
+     }' \
+    http://localhost:5000/api/v1/resources/posts
+sleep 1
+
+
+
+curl --verbose \
+     --request POST \
+     --header 'Content-Type: application/json' \
+     --data '{
+       "title": "Is anyone else over quaratine",
+       "des": "some description35",
+       "comm":"CoronaVirus",
+       "username":"SomeKidxxx"
+     }' \
+    http://localhost:5000/api/v1/resources/posts
+sleep 1
+
+curl --verbose \
+     --request POST \
+     --header 'Content-Type: application/json' \
+     --data '{
+       "title": "Did anyone see that HB was packed",
+       "des": "some description36",
+       "comm":"CoronaVirus",
+       "username":"concerned"
+     }' \
+    http://localhost:5000/api/v1/resources/posts
+sleep 1
+
+curl --verbose \
+     --request POST \
+     --header 'Content-Type: application/json' \
+     --data '{
+       "title": "Can anyone help me on my backend project",
+       "des": "some description34",
+       "comm":"Computer Science",
+       "username":"Confused student"
+     }' \
+    http://localhost:5000/api/v1/resources/posts
+sleep 1
+
+curl --verbose \
+     --request POST \
+     --header 'Content-Type: application/json' \
+     --data '{
+       "title": "Theres a pandemic?",
+       "des": "some description37",
+       "comm":"CoronaVirus",
+       "username":"Slowpoke Gamer"
+     }' \
+    http://localhost:5000/api/v1/resources/posts
+sleep 1
+
+
+#delete posts with id's 2 and 6
+curl --verbose \
+     --request DELETE \
+    http://localhost:5000/api/v1/resources/posts/2
+
+curl --verbose \
+     --request DELETE \
+    http://localhost:5000/api/v1/resources/posts/6
+
+#gety post with id 4
+curl --verbose \
+     --request GET \
+    http://localhost:5000/api/v1/resources/posts/4
+
+# get 2 most recent posts from community 449
+curl --verbose \
+     --request GET \
+    http://localhost:5000/api/v1/resources/posts/StarWars/2
+
+# get 3 recent posts from any community
+curl --verbose \
+     --request GET \
+    http://localhost:5000/api/v1/resources/posts/recent/3
