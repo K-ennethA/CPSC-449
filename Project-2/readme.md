@@ -6,6 +6,7 @@ CPSC 449 Back End Engineering Project 2
 ### Posts Requirements
 
 **Must have dynamo installed locally and configured**
+
 `Remember to run the following command in the directory where dynamo is downloaded`
 `java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb `
 
