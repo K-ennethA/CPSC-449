@@ -16,8 +16,11 @@ CPSC 449 Back End Engineering Project 2
 **To Delete the Posts Table and Create the Posts Table**
 
 `open python3 terminal in proper directory`
+
 `from api import delete_aws,init_aws`
+
 `delete_aws()`
+
 `init_aws()`
 
 ### Foreman 
