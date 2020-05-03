@@ -4,14 +4,20 @@ CPSC 449 Back End Engineering Project 2
 ## Janeen Yamak (Dev 3), Kenneth Aguilar(Dev 1), Lorena Macias (Dev 2)
 
 ### Posts Requirements
+
 **Must have dynamo installed locally and configured**
+
 `java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb `
+
 **Must have boto 3 installed**
+
 **To Delete the Posts Table and Create the Posts Table**
+
 `open python3 terminal in proper directory`
 `from api import delete_aws,init_aws`
 `delete_aws()`
 `init_aws()`
+
 ### Foreman 
 foreman start -m posts=3,votes=3,caddy=1
 
