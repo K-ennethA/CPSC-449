@@ -3,7 +3,7 @@
 #upvote post with id 3
 curl --verbose \
      --request POST \
-    http://localhost:5100/api/v1/resources/votes/upvote/3
+    http://localhost:5100/api/v1/resources/votes/upvote/1
 
 #upvote post with id 3
 curl --verbose \
@@ -269,5 +269,5 @@ curl --verbose \
 #given id's 2,7,8; sort by sco
 curl --verbose \
      -X POST \
-     --data "list=[2,1,4]" \
+     --data "list=[16,1,4]" \
     http://localhost:5100/api/v1/resources/votes/list
