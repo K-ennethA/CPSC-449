@@ -255,7 +255,7 @@ def get_hot_25_post_any_comm(num_of_posts):
             return td.days * 86400 + td.seconds + (float(td.microseconds) / 1000000)
 
         def score(upvote, downvote):
-            return upvote - downvote
+            return int(upvote) - int(downvote)
         #hot ranking 
         s = score(upvote, downvote)
         order = log(max(abs(s), 1), 10)
