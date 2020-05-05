@@ -27,6 +27,12 @@
 
 **Must have redis installed locally and configured**
 
+**To Delete Votes from Redis**
+
+`open redis-cli terminal in proper directory`
+
+`flushall`
+
 
 ### Foreman 
 foreman start -m posts=3,votes=3,rssfeeds=3,caddy=1
