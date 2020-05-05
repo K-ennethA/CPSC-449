@@ -106,7 +106,7 @@ def get_top_25_post_any_comm(num_of_posts):
     votes_json_response = response.json()
     post_ids = [] # create a list of post ids to be sorted
     for vote in votes_json_response:
-        post_ids.append(vote['id'])
+        post_ids.append(vote['PostID'])
     
     #sort the list of ids with the post request
     sorted_votes = requests.post('http://localhost:5100/api/v1/resources/votes/list', data = {'list':str(post_ids)})
@@ -121,11 +121,11 @@ def get_top_25_post_any_comm(num_of_posts):
     fg.link(href='reddit.com')
 
     for vote in sorted_votes_json_response:
-        response = requests.get('http://localhost:5000/api/v1/resources/posts/{}'.format(vote['id'])) #given the id of the votes find the corresponding post
+        response = requests.get('http://localhost:5000/api/v1/resources/posts/{}'.format(vote['PostID'])) #given the id of the votes find the corresponding post
         #Add Feed Entries for all 25 posts
         post_response = response.json()
         fe = fg.add_entry()
-        fe.id(str(vote['id']))
+        fe.id(str(vote['PostID']))
         fe.title(post_response['title'])
         fe.author({'name':post_response['username']})
         fe.pubDate(post_response['date']+'-7:00')
@@ -154,7 +154,7 @@ def get_top_25_recent_post_part_comm(comm,num_of_posts):
     votes_json_response = response.json()
     post_ids = [] #create a list of ids to be later sorted
     for vote in votes_json_response:
-        post_ids.append(vote['id'])
+        post_ids.append(vote['PostID'])
         print(vote)
     #sort the list of post ids with the post request to the given local host 
     sorted_votes = requests.post('http://localhost:5100/api/v1/resources/votes/list', data = {'list':str(post_ids)})
@@ -170,7 +170,7 @@ def get_top_25_recent_post_part_comm(comm,num_of_posts):
 
     for vote in sorted_votes_json_response:
         try:
-            response = requests.get('http://localhost:5000/api/v1/resources/posts/{}'.format(vote['id']),) #given the id of the votes find the corresponding post
+            response = requests.get('http://localhost:5000/api/v1/resources/posts/{}'.format(vote['PostID']),) #given the id of the votes find the corresponding post
             #Add Feed Entries for all 25 posts
             # If the response was successful, no Exception will be raised
             response.raise_for_status()
@@ -184,7 +184,7 @@ def get_top_25_recent_post_part_comm(comm,num_of_posts):
         post_response = response.json()
         if post_response['comm']==comm: #filter by a particular community
             fe = fg.add_entry()
-            fe.id(str(vote['id']))
+            fe.id(str(vote['PostID']))
             fe.title(post_response['title'])
             fe.author({'name':post_response['username']})
             fe.pubDate(post_response['date']+'-7:00')
@@ -224,9 +224,9 @@ def get_hot_25_post_any_comm(num_of_posts):
         try:
 
             #given the id of the votes find the corresponding upvote and downvote
-            up_down_vote_response = requests.get('http://localhost:5100/api/v1/resources/votes/{}'.format(vote['id']),)  
+            up_down_vote_response = requests.get('http://localhost:5100/api/v1/resources/votes/{}'.format(vote['PostID']),)  
             #give the vote id find the corresponding post 
-            post_response = requests.get('http://localhost:5000/api/v1/resources/posts/{}'.format(vote['id']),) 
+            post_response = requests.get('http://localhost:5000/api/v1/resources/posts/{}'.format(vote['PostID']),) 
             response.raise_for_status() # If the response was successful, no Exception will be raised 
 
         except HTTPError as http_err:
@@ -261,7 +261,7 @@ def get_hot_25_post_any_comm(num_of_posts):
         order = log(max(abs(s), 1), 10)
         sign = 1 if s > 0 else -1 if s < 0 else 0
         seconds = epoch_seconds(date) - 1134028003
-        post['id'] = vote['id'] 
+        post['id'] = vote['PostID'] 
         post['rank'] = round(sign * order + seconds / 45000, 7)
         hot_list.append(post)
     #sort the list 
@@ -269,7 +269,7 @@ def get_hot_25_post_any_comm(num_of_posts):
     #grab the first 25 hot rankings and add it to the rss feed
     for post in sorted_hot_list[:26]:
         fe = fg.add_entry()
-        fe.id(str(vote['id']))
+        fe.id(str(vote['PostID']))
         fe.title(post_json_response['title'])
         fe.author({'name':post_json_response['username']})
         fe.pubDate(post_json_response['date']+'-7:00')
