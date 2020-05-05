@@ -182,7 +182,7 @@ def get_top_25_recent_post_part_comm(comm,num_of_posts):
             print('Success!')
 
         post_response = response.json()
-        if post_response['comm']==comm: #filter by a particular community
+        if post_response['subreddit']==comm: #filter by a particular community
             fe = fg.add_entry()
             fe.id(str(vote['PostID']))
             fe.title(post_response['title'])
