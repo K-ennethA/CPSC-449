@@ -1,7 +1,7 @@
 
 # CPSC-449
 ### CPSC 449 Back End Engineering Project 2
-## Janeen Yamak (Dev 3), Kenneth Aguilar(Dev 1), Lorena Macias (Dev 2)
+## Janeen Yamak (Dev 3), Lorena Macias (Dev 2), Kenneth Aguilar(Dev 1) 
 
 ### Posts Requirements
 
@@ -22,6 +22,17 @@
 `delete_aws()`
 
 `init_aws()`
+
+### Votes Requirements
+
+**Must have redis installed locally and configured**
+
+**To Delete Votes from Redis**
+
+`open redis-cli terminal in proper directory`
+
+`flushall`
+
 
 ### Foreman 
 foreman start -m posts=3,votes=3,rssfeeds=3,caddy=1
@@ -53,11 +64,10 @@ foreman start -m posts=3,votes=3,rssfeeds=3,caddy=1
 ``` json 
 [
   {
-    "id" : "Number",
+    "id" : "PostID",
     "upvotes" : "Number",
     "downvotes" : "Number",
     "total" : "Number",
-    "post" : "PostID"
     }
 ]
 ```
