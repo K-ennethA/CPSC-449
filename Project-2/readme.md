@@ -58,11 +58,10 @@ foreman start -m posts=3,votes=3,rssfeeds=3,caddy=1
 ``` json 
 [
   {
-    "id" : "Number",
+    "id" : "PostID",
     "upvotes" : "Number",
     "downvotes" : "Number",
     "total" : "Number",
-    "post" : "PostID"
     }
 ]
 ```
