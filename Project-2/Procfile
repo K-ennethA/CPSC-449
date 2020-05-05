@@ -1,5 +1,6 @@
 posts: gunicorn3 -b localhost:$PORT  posts:app
 votes: gunicorn3 -b localhost:$PORT  votes:app
+rssfeeds: gunicorn3 -b localhost:$PORT rssfeeds:app
 
 caddy: ulimit -n 8192 && caddy
 

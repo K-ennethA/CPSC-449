@@ -1,6 +1,6 @@
 
 # CPSC-449
-CPSC 449 Back End Engineering Project 2
+### CPSC 449 Back End Engineering Project 2
 ## Janeen Yamak (Dev 3), Kenneth Aguilar(Dev 1), Lorena Macias (Dev 2)
 
 ### Posts Requirements
@@ -24,7 +24,7 @@ CPSC 449 Back End Engineering Project 2
 `init_aws()`
 
 ### Foreman 
-foreman start -m posts=3,votes=3,caddy=1
+foreman start -m posts=3,votes=3,rssfeeds=3,caddy=1
 
 ### Testing 
 
@@ -82,6 +82,56 @@ foreman start -m posts=3,votes=3,caddy=1
 - `404 NOT FOUND` if post does not exist 
 <p>&nbsp;</p>
 
+## The 25 most recent posts to a particular community
+**Definition**
+
+`GET /api/rss/resources/posts/<string:comm>/25`
+
+**Response**
+- `200 OK` if successful 
+<p>&nbsp;</p>
+
+
+## The 25 most recent posts to any community
+**Definition**
+
+`GET /api/rss/resources/posts/recent/25`
+
+**Response**
+- `200 OK` if successful 
+<p>&nbsp;</p>
+
+## The top 25 posts to a particular community, sorted by score
+**Definition**
+
+`GET /api/rss/resources/posts/top/<string:comm>/25`
+
+**Response**
+- `200 OK` if successful 
+<p>&nbsp;</p>
+
+## The top 25 posts to any community, sorted by score 
+**Definition**
+
+`GET /api/rss/resources/posts/top/25`
+
+**Response**
+- `200 OK` if successful 
+<p>&nbsp;</p>
+
+## The hot 25 posts to any community, ranked usinf reddits "hot ranking algorithm"
+**Definition**
+
+`GET /api/rss/resources/posts/<string:comm> <int:num_of_posts>`
+
+**Response**
+- `200 OK` if successful 
+<p>&nbsp;</p>
+
+
+<p>&nbsp;</p>
+
+# Project 1 Endpoints
 
 ## Retrieve All Posts
 **Definition**

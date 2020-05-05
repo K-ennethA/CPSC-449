@@ -11,3 +11,9 @@ localhost/votes{
 	proxy /127.0.0.1:5100 127.0.0.1:5101 127.0.0.1:5102 
 
 }
+
+localhost/rssfeeds{
+	log stdout
+	proxy /127.0.0.1:5200 127.0.0.1:5201 127.0.0.1:5202 
+
+}
