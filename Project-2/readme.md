@@ -40,10 +40,10 @@ foreman start -m posts=3,votes=3,rssfeeds=3,caddy=1
 ```json
 [
   {
-    "id" : "Number",
+    "PostId" : "Number",
     "title" : "title",
-    "des" : "description",
-    "comm" : "community",
+    "text" : "description",
+    "subreddit" : "community",
     "url" : "url",
     "date" : "YYYY-MM-DD HH:MM:SS"
   }
