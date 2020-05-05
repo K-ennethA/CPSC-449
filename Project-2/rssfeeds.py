@@ -38,10 +38,10 @@ def get_25_recent_post_any_comm(num_of_posts):
     #Add Feed Entries for all 25 posts
     for post in json_response:
         fe = fg.add_entry()
-        fe.id(str(post['id']))
+        #fe.id(str(post['id']))
         fe.title(post['title'])
         fe.author({'name':post['username']})
-        fe.pubDate(post['created_date']+'-7:00')
+        fe.pubDate(post['date']+'-7:00')
         
     #Generate the Feed
     rssfeed = fg.rss_str(pretty=True)
@@ -77,10 +77,10 @@ def get_25_recent_post_part_comm(comm,num_of_posts):
     #Add Feed Entries for all 25 posts
     for post in json_response:
         fe = fg.add_entry()
-        fe.id(str(post['id']))
+        # fe.id(str(post['id']))
         fe.title(post['title'])
         fe.author({'name':post['username']})
-        fe.pubDate(post['created_date']+'-7:00')
+        fe.pubDate(post['date']+'-7:00')
 
     #Generate the Feed
     rssfeed = fg.rss_str(pretty=True)
@@ -128,7 +128,7 @@ def get_top_25_post_any_comm(num_of_posts):
         fe.id(str(vote['id']))
         fe.title(post_response['title'])
         fe.author({'name':post_response['username']})
-        fe.pubDate(post_response['created_date']+'-7:00')
+        fe.pubDate(post_response['date']+'-7:00')
 
     #Generate the Feed
     rssfeed = fg.rss_str(pretty=True)
@@ -187,7 +187,7 @@ def get_top_25_recent_post_part_comm(comm,num_of_posts):
             fe.id(str(vote['id']))
             fe.title(post_response['title'])
             fe.author({'name':post_response['username']})
-            fe.pubDate(post_response['created_date']+'-7:00')
+            fe.pubDate(post_response['date']+'-7:00')
 
     #Generate the Feed
     rssfeed = fg.rss_str(pretty=True)
@@ -244,8 +244,8 @@ def get_hot_25_post_any_comm(num_of_posts):
         upvote = up_down_vote_json_res['upvotes']
         downvote = up_down_vote_json_res['downvotes']
 
-        json_date= str(post_json_response['created_date']).split(' ')[0].split('-')
-        json_time = str(post_json_response['created_date']).split(' ')[1].split(':')
+        json_date= str(post_json_response['date']).split(' ')[0].split('-')
+        json_time = str(post_json_response['date']).split(' ')[1].split(':')
 
         epoch = datetime(1970,1,1)  
         date = datetime(int(json_date[0]), int(json_date[1]), int(json_date[2]), int(json_time[0]), int(json_time[1]),int(json_time[2]))
@@ -272,7 +272,7 @@ def get_hot_25_post_any_comm(num_of_posts):
         fe.id(str(vote['id']))
         fe.title(post_json_response['title'])
         fe.author({'name':post_json_response['username']})
-        fe.pubDate(post_json_response['created_date']+'-7:00')
+        fe.pubDate(post_json_response['date']+'-7:00')
 
     
     #Generate the Feed
